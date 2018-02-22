@@ -1,0 +1,30 @@
+{
+  "name": "optimized-quicksort",
+  "version": "1.0.1",
+  "description": "Optimized version of quicksort.",
+  "main": "src/optimized-quicksort.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krzaku281/optimized-quicksort.git"
+  },
+  "keywords": [
+    "quicksort",
+    "quick",
+    "sort",
+    "sorting",
+    "fast",
+    "optimized"
+  ],
+  "author": "Marek Krzak <krzakmarek88@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krzaku281/optimized-quicksort/issues"
+  },
+  "homepage": "https://github.com/krzaku281/optimized-quicksort#readme",
+  "publishConfig": {
+	"registry":"https://registry.npmjs.org/"
+  }
+}
