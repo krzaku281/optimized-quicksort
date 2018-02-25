@@ -7,36 +7,39 @@ module.exports = {
 };
 
 function sort(array) {
-	function swap(i, j) {
-		var temp = array[i];
-		array[i] = array[j];
-		array[j] = temp;
-	};
+	if (array.length < 2) {
+		return array;
+	}
 
 	function quicksort(left, right) {
 		if (left < right) {
-			var divider = pivot(array, left, right),
-				leftCopy = left,
-				rightCopy = right;
+			var divider = pivot(array, left, right);
+			var	less = left;
+			var	more = right;
  
 			do {
-				while (comparator(array[leftCopy], divider)) {
-					++leftCopy;
+				while (comparator(array[less], divider)) {
+					++less;
 				}
-				while (comparator(divider, array[rightCopy])) {
-					--rightCopy;
+				while (comparator(divider, array[more])) {
+					--more;
 				}
-				if (leftCopy <= rightCopy) {
-					swap(leftCopy, rightCopy);
-					++leftCopy;
-					--rightCopy;
+				
+				if (less <= more) {
+					var temp = array[less];
+					array[less] = array[more];
+					array[more] = temp;
+					
+					++less;
+					--more;
 				}
-			} while (leftCopy <= rightCopy);
+			} while (less <= more);
  
-			quicksort(left, rightCopy);
-			quicksort(leftCopy, right);
+			quicksort(left, more);
+			quicksort(less, right);
 		}
-	}
+	};
+	
 	quicksort(0, array.length - 1);
  
 	return array;
