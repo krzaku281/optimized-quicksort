@@ -2,26 +2,27 @@
 
 module.exports = {
 	sort: sort,
-	comparator: comparator,
-	pivot: pivot,
 };
 
-function sort(array) {
+function sort(array, comparatorFn, pivotFn) {
 	if (array.length < 2) {
 		return array;
 	}
+	
+	comparatorFn = comparatorFn || baseComparatorFn;
+	pivotFn = pivotFn || basePivotFn;
 
 	function quicksort(left, right) {
 		if (left < right) {
-			var divider = pivot(array, left, right);
+			var divider = pivotFn(array, left, right);
 			var	less = left;
 			var	more = right;
  
 			do {
-				while (comparator(array[less], divider)) {
+				while (comparatorFn(array[less], divider)) {
 					++less;
 				}
-				while (comparator(divider, array[more])) {
+				while (comparatorFn(divider, array[more])) {
 					--more;
 				}
 				
@@ -45,10 +46,10 @@ function sort(array) {
 	return array;
 };
 
-function comparator(left, right) { 
+function baseComparatorFn(left, right) { 
 	return left < right; 
 };
 
-function pivot(array, left, right) {
+function basePivotFn(array, left, right) {
 	return array[left + ~~((right - left) / 2)];
 };
