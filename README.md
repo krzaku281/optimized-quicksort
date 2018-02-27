@@ -12,8 +12,12 @@ $ npm install optimized-quicksort
 ```sh
 var Quicksort = require('optimized-quicksort');
 
+function myCompareFn(left, right){
+	return left < right;
+}
+
 var array = [1,9,2,8,3,7,4,6,5];
-Quicksort.sort(array);
+Quicksort.sort(array, 0, array.length, myCompareFn);
 ```
 
 # Licence

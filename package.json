@@ -26,5 +26,8 @@
   "homepage": "https://github.com/krzaku281/optimized-quicksort#readme",
   "publishConfig": {
 	"registry":"https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "performance": "node ./test/performance.js"
   }
 }
