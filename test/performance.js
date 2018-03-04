@@ -1,21 +1,24 @@
 var Quicksort = require('../src/optimized-quicksort.js');
 
-function myCompareFn(left, right){
-	return left < right;
+function myCompareFn(a, b){
+    if (a < b) return -1;
+    else if (a > b) return 1;
+    else return 0;
 }
 
-function myPivotFn(array, left, right) {
-	return array[left + ~~((right - left) / 2)];
+var array = [], copy;
+for(var i = 0 ; i < 10000 ; i++){
+	array.push(~~(Math.random()*10000))
 }
-
-console.log("Result: " + Quicksort.sort([5,8,1,10,2,3,9,7,6,2,2,2,2,2], 0, 13, myCompareFn));
 
 var startDate, stopDate, tempResult;
-var loopNumber = 9999999;
+var loopNumber = 1000;
+console.log("Sort 1000 tables each 10000 elements");
 
 startDate = +new Date();
 for(var i = 0 ; i < loopNumber ; i++) {
-	tempResult = Quicksort.sort([5,8,1,10,2,3,9,7,6,2,2,2,2,2], 0, 13, myCompareFn);
+	copy = array.slice(0);
+	tempResult = Quicksort.sort(copy, myCompareFn);
 }
 stopDate = +new Date();
 console.log("Quicksort time: " + (stopDate - startDate)  + "ms");
@@ -24,7 +27,8 @@ console.log("Quicksort time: " + (stopDate - startDate)  + "ms");
 
 startDate = +new Date();
 for(var i = 0 ; i < loopNumber ; i++) {
-	tempResult = [5,8,1,10,2,3,9,7,6,2,2,2,2,2].sort(myCompareFn);
+	copy = array.slice(0);
+	tempResult = copy.sort(myCompareFn);
 }
 stopDate = +new Date();
 console.log("Array.sort() time: " + (stopDate - startDate)  + "ms");
