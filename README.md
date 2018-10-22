@@ -26,9 +26,17 @@ Quicksort.sort(array, myCompareFn);
 ```sh
 npm run performance
 
-Sort 1000 tables each 10000 elements
-Quicksort time: 761ms
-Array.sort() time: 1972ms
+Sort 1000 tables each 10000 integer elements
+Quicksort time: 730ms
+Array.sort() time: 1940ms
+
+Sort 1000000 tables each 10 integer elements
+Quicksort time: 210ms
+Array.sort() time: 654ms
+
+Sort 100 tables each 10000 string elements
+Quicksort time: 320ms
+Array.sort() time: 400ms
 ```
 
 # Licence
