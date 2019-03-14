@@ -1,9 +1,5 @@
 "use strict";
 
-module.exports = {
-	sort: sort,
-};
-
 function sort(array, compareFn) {
 	return quicksort(array, 0, array.length - 1, compareFn, 3);
 };
@@ -40,8 +36,7 @@ function quicksort(array, left, right, compareFn, divider) {
     if (compareFn(array[m1], array[m2]) < 0) {
 		swap(array, m1, left);
 		swap(array, m2, right);
-    } 
-	else {
+    } else {
 		swap(array, m1, right);
 		swap(array, m2, left);
     }
@@ -49,39 +44,37 @@ function quicksort(array, left, right, compareFn, divider) {
     var pivot1 = array[left];
 	var pivot2 = array[right];
 	
-    var less  = left  + 1;
-	var great = right - 1;
+    var less  = left + 1;
+	var more = right - 1;
 	
-    for (var i = less; i <= great; i++) {
+    for (var i = less; i <= more; i++) {
 		if (compareFn(array[i], pivot1) < 0) {
 			swap(array, i, less++);
-		}
-		else if (compareFn(array[i], pivot2) > 0) {
-			while (i < great && compareFn(array[great], pivot2) > 0) {
-				--great;
+		} else if (compareFn(array[i], pivot2) > 0) {
+			while (i < more && compareFn(array[more], pivot2) > 0) {
+				--more;
 			}
-			swap(array, i, great--);
+			swap(array, i, more--);
 			if (compareFn(array[i], pivot1) < 0) {
 				swap(array, i, less++);
 			}
 		}
     }
-    var dist = great - less;
+    var dist = more - less;
     if (dist < 13) {
 		++divider;
 	}
-    swap(array, less  - 1, left);
-    swap(array, great + 1, right);
-    quicksort(array, left,   less - 2, compareFn, divider);
-    quicksort(array, great + 2, right, compareFn, divider);
+    swap(array, less - 1, left);
+    swap(array, more + 1, right);
+    quicksort(array, left, less - 2, compareFn, divider);
+    quicksort(array, more + 2, right, compareFn, divider);
 	
     if (dist > length - 13 && pivot1 !== pivot2) {
-		for (var i = less; i <= great; i++) {
+		for (var i = less; i <= more; i++) {
 			if (array[i] === pivot1) {
 				swap(array, i, less++);
-			}
-			else if (array[i] === pivot2) {
-				swap(array, i, great--);
+			} else if (array[i] === pivot2) {
+				swap(array, i, more--);
 				if (array[i] === pivot1) {
 					swap(array, i, less++);
 				}
@@ -90,8 +83,11 @@ function quicksort(array, left, right, compareFn, divider) {
     }
 	
     if (compareFn(pivot1, pivot2) < 0) {
-		return quicksort(array, less, great, compareFn, divider);
+		return quicksort(array, less, more, compareFn, divider);
 	}
-	
     return array;
+};
+
+module.exports = {
+	sort: sort,
 };
